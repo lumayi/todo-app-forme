@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
 export default function ToDo() {
+  const [todos, setTodos] = useState(localStorage.getItem('todos'));
+  useEffect(() => {}, [todos]);
   return (
     <div className="flex flex-col gap-2 px-4 mt-4">
       <div>
