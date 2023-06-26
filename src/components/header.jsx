@@ -3,7 +3,7 @@ import { FaSun, FaMoon } from 'react-icons/fa';
 
 export default function Header() {
   return (
-    <div className="flex justify-between font-semibold">
+    <div className="flex justify-between font-semibold p-4 rounded-t bg-gray-300">
       <div>
         <FaSun className="cursor-pointer hover:text-gray-500" />
       </div>
