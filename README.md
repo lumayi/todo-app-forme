@@ -1,6 +1,6 @@
-# 마음에 드는 ToDoApp이 없어서 직접 만든 ToDo App
+# 마음에 드는 App이 없어서 직접 만든 ToDo App
 
-시간 단위로 등록 가능한 할 일과 간단한 메모를 작성할 수 있는 ToDo-APP [ToDo APP for LUMA](https://github.com/facebook/create-react-app).
+시간 단위로 등록 가능한 할 일과 간단한 메모를 작성할 수 있는 ToDo-APP [LUMA's ToDo](https://github.com/facebook/create-react-app).
 
 ## 사용방법
 
