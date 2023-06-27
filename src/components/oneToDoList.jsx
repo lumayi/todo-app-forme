@@ -2,25 +2,37 @@ import React, { useContext } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { ToDosContext } from '../context/todosContext';
 import cls from 'classnames';
+import { DarkModeContext } from '../context/darkModeContext';
 
-export default function OneToDoList({ todo, time, deleteTodo, index }) {
-  const { todos, changeTodo } = useContext(ToDosContext);
+export default function OneToDoList({ todo, time, deleteTodo }) {
+  const { changeTodo } = useContext(ToDosContext);
+  const { darkMode } = useContext(DarkModeContext);
   return (
     <>
-      {index === 0 && <span className="text-xs">{time}</span>}
-      <div className="flex h-9 justify-between items-center hover:bg-gray-300 rounded px-2">
+      <div className="flex h-9 justify-between items-center rounded px-2">
         <div className="flex justify-center items-center gap-2">
           <input
             type="checkbox"
+            className="cursor-pointer"
             onClick={() => changeTodo({ time, title: todo.title })}
           />
-          <span className={cls({ 'line-through': todo.done })}>
+          <span
+            className={cls(
+              { 'line-through': todo.done },
+              { 'text-black': !darkMode },
+              { 'text-gray-200': darkMode }
+            )}
+          >
             {todo.title}
           </span>
         </div>
         <div>
           <FaTrash
-            className="text-gray-700 cursor-pointer hover:text-red-400"
+            className={cls(
+              'cursor-pointer',
+              { 'text-gray-700 hover:text-red-400': !darkMode },
+              { 'text-gray-200 hover:text-blue-400': darkMode }
+            )}
             onClick={() => deleteTodo({ title: todo.title, time })}
           />
         </div>
