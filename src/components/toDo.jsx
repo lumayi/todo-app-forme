@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ToDosContext } from '../context/todosContext';
-import { FaSun, FaMoon } from 'react-icons/fa';
 import cls from 'classnames';
 import OneToDoList from './oneToDoList';
 import { DarkModeContext } from '../context/darkModeContext';
