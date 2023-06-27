@@ -1,12 +1,16 @@
-import React, { useReducer, useState } from 'react';
-import ToDoReducer from '../reducer/todo-reducer';
+import React, { useContext, useRef, useState } from 'react';
+import { ToDosContext } from '../context/todosContext';
 
 export default function Footer() {
-  const innitialTodo = localStorage.getItem('todos');
-  const [todos, dispatch] = useReducer(ToDoReducer, JSON.parse(innitialTodo));
-  const [todoAdd, setTodoAdd] = useState();
+  const initialValue = { time: '', title: '' };
+  const [todoAdd, setTodoAdd] = useState(initialValue);
+  const { addTodo } = useContext(ToDosContext);
+  const inputRef = useRef(null);
   const handleAdd = () => {
-    dispatch({ type: 'add', todoAdd });
+    if (!todoAdd.time) return alert('시간대 선택을 해주세요.');
+    if (!todoAdd.title) return alert('해야할 일을 입력해주세요.');
+    addTodo(todoAdd);
+    inputRef.current.value = '';
   };
   const handleTime = (e) => {
     setTodoAdd((prev) => ({
@@ -17,7 +21,7 @@ export default function Footer() {
   const handleName = (e) => {
     setTodoAdd((prev) => ({
       ...prev,
-      name: e.target.value,
+      title: e.target.value,
     }));
   };
   return (
@@ -27,13 +31,15 @@ export default function Footer() {
           onChange={handleTime}
           className="p-2 rounded outline-none bg-gray-100"
         >
-          <option value="dawn">새벽</option>
-          <option value="morning">오전</option>
-          <option value="noon">오후</option>
-          <option value="night">밤</option>
+          <option value="">시간</option>
+          <option value="새벽">새벽</option>
+          <option value="오전">오전</option>
+          <option value="오후">오후</option>
+          <option value="밤">밤</option>
         </select>
         <div className="flex items-center justify-center">
           <input
+            ref={inputRef}
             onChange={handleName}
             type="text"
             placeholder="해야할 일을 입력해주세요."
