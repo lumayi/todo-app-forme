@@ -15,6 +15,7 @@ export default function OneToDoList({ todo, time, deleteTodo }) {
             type="checkbox"
             className="cursor-pointer"
             onClick={() => changeTodo({ time, title: todo.title })}
+            checked={todo.done}
           />
           <span
             className={cls(
