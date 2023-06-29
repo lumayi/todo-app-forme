@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import cls from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function AddTodo({ handleAdd }) {
@@ -8,30 +7,32 @@ export default function AddTodo({ handleAdd }) {
   const inputRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!todoAdd.time) return alert('시간대를 선택 해주세요.');
-    if (todoAdd.title.trim().length === 0) return;
+    if (!time) return alert('시간대를 선택 해주세요.');
+    if (title.trim().length === 0) return;
     handleAdd({ id: uuidv4(), title, time, done: false });
     inputRef.current.value = '';
   };
-  const handleTime = (e) => {
-    setTodoAdd((prev) => ({
-      ...prev,
+  const handleTime = (e) =>
+    setTodoAdd({
+      ...todoAdd,
       time: e.target.value,
-    }));
-  };
-  const handleName = (e) => {
-    setTodoAdd((prev) => ({
-      ...prev,
+    });
+
+  const handleTitle = (e) =>
+    setTodoAdd({
+      ...todoAdd,
       title: e.target.value,
-    }));
-  };
+    });
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
       className="mt-14 p-4 rounded-b bg-gray-300"
     >
       <div className="flex justify-center gap-2 items-center">
-        <select onChange={handleTime} className="p-2 rounded outline-none ">
+        <select
+          onChange={(e) => handleTime(e)}
+          className="p-2 rounded outline-none "
+        >
           <option value="">시간</option>
           <option value="dawn">새벽</option>
           <option value="morning">오전</option>
@@ -41,7 +42,7 @@ export default function AddTodo({ handleAdd }) {
         <div className="flex items-center justify-center">
           <input
             ref={inputRef}
-            onChange={handleName}
+            onChange={(e) => handleTitle(e)}
             type="text"
             placeholder="해야할 일을 입력해주세요."
             className="p-2 w-52 rounded-l outline-none indent-2"
