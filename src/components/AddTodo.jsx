@@ -1,0 +1,58 @@
+import React, { useRef, useState } from 'react';
+import cls from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
+
+export default function AddTodo({ handleAdd }) {
+  const [todoAdd, setTodoAdd] = useState(initialValue);
+  const { title, time } = todoAdd;
+  const inputRef = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!todoAdd.time) return alert('시간대를 선택 해주세요.');
+    if (todoAdd.title.trim().length === 0) return;
+    handleAdd({ id: uuidv4(), title, time, done: false });
+    inputRef.current.value = '';
+  };
+  const handleTime = (e) => {
+    setTodoAdd((prev) => ({
+      ...prev,
+      time: e.target.value,
+    }));
+  };
+  const handleName = (e) => {
+    setTodoAdd((prev) => ({
+      ...prev,
+      title: e.target.value,
+    }));
+  };
+  return (
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="mt-14 p-4 rounded-b bg-gray-300"
+    >
+      <div className="flex justify-center gap-2 items-center">
+        <select onChange={handleTime} className="p-2 rounded outline-none ">
+          <option value="">시간</option>
+          <option value="dawn">새벽</option>
+          <option value="morning">오전</option>
+          <option value="afternoon">오후</option>
+          <option value="night">밤</option>
+        </select>
+        <div className="flex items-center justify-center">
+          <input
+            ref={inputRef}
+            onChange={handleName}
+            type="text"
+            placeholder="해야할 일을 입력해주세요."
+            className="p-2 w-52 rounded-l outline-none indent-2"
+          />
+          <button className="rounded-r p-2 text-white bg-blue-500">
+            추가하기
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+const initialValue = { time: '', title: '' };

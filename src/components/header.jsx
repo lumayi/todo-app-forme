@@ -1,21 +1,11 @@
 import React, { useContext } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { DarkModeContext } from '../context/darkModeContext';
-import cls from 'classnames';
-import { HeaderContext } from '../context/headerContext';
 
-export default function Header() {
+export default function Header({ filters, filter, setFilter }) {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-  const { menus, setMenus } = useContext(HeaderContext);
-  const { all, current, done } = menus;
   return (
-    <div
-      className={cls(
-        'flex items-center justify-between p-4 rounded-t',
-        { 'bg-gray-300': !darkMode },
-        { 'bg-slate-700': darkMode }
-      )}
-    >
+    <header className="flex items-center justify-between p-4 rounded-t bg-gray-300">
       <div>
         {darkMode ? (
           <FaMoon
@@ -29,47 +19,17 @@ export default function Header() {
           />
         )}
       </div>
-      <div className={cls('flex gap-2', { 'text-white': darkMode })}>
-        <span
-          className={cls(
-            'cursor-pointer',
-            {
-              'font-semibold': all,
-            },
-            { 'hover:text-gray-700': !darkMode },
-            { 'hover:text-gray-300': darkMode }
-          )}
-          onClick={() => setMenus({ all: true, current: false, done: false })}
-        >
-          전체
-        </span>
-        <span
-          className={cls(
-            'cursor-pointer',
-            {
-              'font-semibold': current,
-            },
-            { 'hover:text-gray-700': !darkMode },
-            { 'hover:text-gray-300': darkMode }
-          )}
-          onClick={() => setMenus({ all: false, current: true, done: false })}
-        >
-          해야할일
-        </span>
-        <span
-          className={cls(
-            'cursor-pointer',
-            {
-              'font-semibold': done,
-            },
-            { 'hover:text-gray-700': !darkMode },
-            { 'hover:text-gray-300': darkMode }
-          )}
-          onClick={() => setMenus({ all: false, current: false, done: true })}
-        >
-          완료
-        </span>
+      <div className="flex gap-2">
+        {filters.map((value, index) => (
+          <span
+            key={index}
+            className="cursor-pointer"
+            onClick={() => setFilter(value)}
+          >
+            {value}
+          </span>
+        ))}
       </div>
-    </div>
+    </header>
   );
 }
