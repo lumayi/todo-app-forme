@@ -11,6 +11,7 @@ export default function AddTodo({ handleAdd }) {
     if (title.trim().length === 0) return;
     handleAdd({ id: uuidv4(), title, time, done: false });
     inputRef.current.value = '';
+    setTodoAdd({ ...todoAdd, title: '' });
   };
   const handleTime = (e) =>
     setTodoAdd({
@@ -26,7 +27,7 @@ export default function AddTodo({ handleAdd }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="mt-14 p-4 rounded-b bg-gray-300 dark:bg-slate-700"
+      className="p-4 rounded-b bg-gray-300 dark:bg-slate-700"
     >
       <div className="flex justify-center gap-2 items-center">
         <select
