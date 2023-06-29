@@ -32,7 +32,7 @@ export default function TodoList({ filter }) {
 
   return (
     <>
-      <div className="bg-white dark:bg-slate-800 h-[25rem] flex flex-col gap-2 p-4 dark:text-gray-100 overflow-y-scroll">
+      <div className="bg-white dark:bg-black h-[25rem] flex flex-col gap-2 p-4 dark:text-gray-100 overflow-y-scroll">
         <div>
           {dawn.length > 0 && <span className="text-xs">새벽</span>}
           {dawn.map((value) => {

@@ -32,9 +32,9 @@ export default function AddTodo({ handleAdd }) {
       <div className="flex justify-center gap-2 items-center">
         <select
           onChange={(e) => handleTime(e)}
-          className="p-2 rounded outline-none "
+          className="p-2 rounded outline-none dark:bg-gray-800 dark:text-white"
         >
-          <option value="">시간</option>
+          <option value="">시간대</option>
           <option value="dawn">새벽</option>
           <option value="morning">오전</option>
           <option value="afternoon">오후</option>
@@ -46,9 +46,9 @@ export default function AddTodo({ handleAdd }) {
             onChange={(e) => handleTitle(e)}
             type="text"
             placeholder="해야할 일을 입력해주세요."
-            className="p-2 w-52 rounded-l outline-none indent-2"
+            className="py-2 px-4 w-52 rounded-l outline-none dark:bg-gray-800 dark:text-white"
           />
-          <button className="rounded-r p-2 text-white bg-orange-500 dark:bg-blue-500">
+          <button className="rounded-r py-2 px-4 text-white bg-orange-500 dark:bg-blue-500">
             추가하기
           </button>
         </div>
