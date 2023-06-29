@@ -26,7 +26,7 @@ export default function AddTodo({ handleAdd }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="mt-14 p-4 rounded-b bg-gray-300"
+      className="mt-14 p-4 rounded-b bg-gray-300 dark:bg-slate-700"
     >
       <div className="flex justify-center gap-2 items-center">
         <select
@@ -47,7 +47,7 @@ export default function AddTodo({ handleAdd }) {
             placeholder="해야할 일을 입력해주세요."
             className="p-2 w-52 rounded-l outline-none indent-2"
           />
-          <button className="rounded-r p-2 text-white bg-blue-500">
+          <button className="rounded-r p-2 text-white bg-orange-500 dark:bg-blue-500">
             추가하기
           </button>
         </div>

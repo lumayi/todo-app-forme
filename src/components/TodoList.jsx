@@ -26,10 +26,13 @@ export default function TodoList({ filter }) {
     todos.filter((value) => value.time === 'night'),
     filter
   );
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <>
-      <div className="flex flex-col gap-2 px-4 mt-4 min-h-[20rem]">
+      <div className="flex flex-col gap-2 px-4 mt-4 min-h-[20rem] dark:text-gray-100">
         <div>
           {dawn.length > 0 && <span className="text-xs">새벽</span>}
           {dawn.map((value) => {

@@ -7,15 +7,15 @@ export default function Header({ filters, filter, setFilter }) {
   const { darkMode, toggleDarkMode } = useDarkModeContext();
 
   return (
-    <header className="flex items-center justify-between p-4 rounded-t bg-gray-300">
+    <header className="flex items-center justify-between p-4 rounded-t bg-gray-300 dark:bg-slate-700">
       <button
         type="button"
-        className="text-orange-600 dark:text-blue-500 text-lg cursor-pointer hover:rotate-12 hover:scale-125"
+        className="text-orange-600 dark:text-blue-500 text-xl cursor-pointer hover:rotate-12 hover:scale-125"
         onClick={toggleDarkMode}
       >
         {darkMode ? <HiMoon /> : <HiSun />}
       </button>
-      <div className="flex gap-2">
+      <div className="flex gap-2 dark:text-white">
         {filters.map((value, index) => (
           <span
             key={index}

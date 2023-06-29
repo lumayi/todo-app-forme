@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 import cls from 'classnames';
 
 export default function Todo({ todo, handleUpdate, handleDelete }) {
-  const { id, time, title, done } = todo;
+  const { id, title, done } = todo;
   const handleStatus = (e) => {
     const status = !!e.target.checked;
     return handleUpdate({ ...todo, done: status });
@@ -14,7 +14,7 @@ export default function Todo({ todo, handleUpdate, handleDelete }) {
         <input
           type="checkbox"
           id={id}
-          className="cursor-pointer"
+          className="cursor-pointer  accent-orange-500 dark:accent-blue-500"
           onChange={(e) => handleStatus(e)}
           checked={done}
         />
@@ -25,7 +25,7 @@ export default function Todo({ todo, handleUpdate, handleDelete }) {
       <div>
         <button
           type="button"
-          className="cursor-pointer"
+          className="cursor-pointer hover:text-orange-500 dark:hover:text-blue-500"
           onClick={() => handleDelete(todo)}
         >
           <FaTrash />
