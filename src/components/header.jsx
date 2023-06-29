@@ -1,32 +1,36 @@
 import React, { useContext } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { HiSun, HiMoon } from 'react-icons/hi';
 import { DarkModeContext } from '../context/darkModeContext';
+import cls from 'classnames';
 
 export default function Header({ filters, filter, setFilter }) {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
   return (
     <header className="flex items-center justify-between p-4 rounded-t bg-gray-300">
-      <div>
-        {darkMode ? (
-          <FaMoon
-            className="text-blue-400 cursor-pointer hover:text-gray-300"
-            onClick={toggleDarkMode}
-          />
-        ) : (
-          <FaSun
-            className="text-orange-600 cursor-pointer hover:text-gray-400"
-            onClick={toggleDarkMode}
-          />
+      <button
+        type="button"
+        className={cls(
+          'text-lg cursor-pointer hover:text-gray-200',
+          { 'text-blue-400 ': darkMode },
+          { 'text-orange-600': !darkMode }
         )}
-      </div>
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? <HiMoon /> : <HiSun />}
+      </button>
       <div className="flex gap-2">
         {filters.map((value, index) => (
           <span
             key={index}
-            className="cursor-pointer"
+            className={cls('cursor-pointer', {
+              'opacity-[0.50]': filter !== value,
+            })}
             onClick={() => setFilter(value)}
           >
-            {value}
+            {value === 'all' && '전체'}
+            {value === 'current' && '해야할일'}
+            {value === 'done' && '완료'}
           </span>
         ))}
       </div>
